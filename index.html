@@ -3,310 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Muhammed Abdul Azeez - Penetration Tester | Ethical Hacker | Cybersecurity Professional based in Lagos, Nigeria">
+    <meta name="keywords" content="Cybersecurity, Penetration Testing, Ethical Hacking, VAPT, OWASP, Kali Linux, Lagos, Nigeria">
+    <meta name="author" content="Muhammed Abdul Azeez">
+    <meta property="og:title" content="Muhammed Abdul Azeez | Cybersecurity Professional">
+    <meta property="og:description" content="Portfolio of a Penetration Tester specialized in Vulnerability Assessment and Penetration Testing">
+    <meta property="og:type" content="website">
     <title>Muhammed Abdul Azeez | Cybersecurity Professional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-green: #00ff41;
-            --dark-bg: #0a0a0a;
-            --terminal-bg: #111;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Glitch Effect */
-        .glitch {
-            position: relative;
-            animation: glitch-skew 1s infinite linear alternate-reverse;
-        }
-        
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #00fff9;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0); }
-            20% { clip: rect(76px, 9999px, 15px, 0); }
-            40% { clip: rect(8px, 9999px, 83px, 0); }
-            60% { clip: rect(54px, 9999px, 43px, 0); }
-            80% { clip: rect(12px, 9999px, 68px, 0); }
-            100% { clip: rect(89px, 9999px, 23px, 0); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 99px, 0); }
-            20% { clip: rect(12px, 9999px, 54px, 0); }
-            40% { clip: rect(87px, 9999px, 32px, 0); }
-            60% { clip: rect(23px, 9999px, 76px, 0); }
-            80% { clip: rect(91px, 9999px, 12px, 0); }
-            100% { clip: rect(45px, 9999px, 67px, 0); }
-        }
-        
-        @keyframes glitch-skew {
-            0% { transform: skew(0deg); }
-            10% { transform: skew(-2deg); }
-            20% { transform: skew(2deg); }
-            30% { transform: skew(0deg); }
-            100% { transform: skew(0deg); }
-        }
-        
-        /* Matrix Rain Canvas */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.15;
-        }
-        
-        /* Terminal Window */
-        .terminal {
-            background: rgba(17, 17, 17, 0.95);
-            border: 1px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-        
-        .terminal-header {
-            background: #1a1a1a;
-            border-bottom: 1px solid #333;
-            padding: 12px 16px;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            gap: 8px;
-        }
-        
-        .terminal-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        .terminal-content {
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .command {
-            color: var(--neon-green);
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 18px;
-            background: var(--neon-green);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 4px;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        /* Skill Bars */
-        .skill-bar {
-            height: 4px;
-            background: #222;
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-green), #00cc33);
-            width: 0;
-            transition: width 1.5s ease-out;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-        }
-        
-        /* Card Hover Effects */
-        .project-card {
-            transition: all 0.3s ease;
-            border: 1px solid #222;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-green);
-            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.1);
-        }
-        
-        /* Timeline */
-        .timeline-line {
-            position: absolute;
-            left: 24px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--neon-green), transparent);
-        }
-        
-        .timeline-dot {
-            width: 16px;
-            height: 16px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            position: absolute;
-            left: 17px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-        }
-        
-        /* Navigation */
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--neon-green);
-            transition: width 0.3s;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Scanline Effect */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0),
-                rgba(255,255,255,0) 50%,
-                rgba(0,0,0,0.1) 50%,
-                rgba(0,0,0,0.1)
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.3;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-green);
-        }
-        
-        /* Binary Background */
-        .binary-bg {
-            position: absolute;
-            font-family: 'JetBrains Mono', monospace;
-            color: rgba(0, 255, 65, 0.03);
-            font-size: 14px;
-            line-height: 14px;
-            user-select: none;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        /* Certification Badge */
-        .cert-badge {
-            transition: transform 0.3s;
-        }
-        
-        .cert-badge:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Typewriter Effect */
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid var(--neon-green);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-green); }
-        }
+        :root{--neon-green:#00ff41;--dark-bg:#0a0a0a;--terminal-bg:#111}
+        body{font-family:'Inter',sans-serif;background-color:var(--dark-bg);color:#e0e0e0;overflow-x:hidden}
+        .font-mono{font-family:'JetBrains Mono',monospace}
+        .glitch{position:relative;animation:glitch-skew 1s infinite linear alternate-reverse}
+        .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+        .glitch::before{left:2px;text-shadow:-2px 0 #ff00c1;clip:rect(44px,450px,56px,0);animation:glitch-anim 5s infinite linear alternate-reverse}
+        .glitch::after{left:-2px;text-shadow:-2px 0 #00fff9;clip:rect(44px,450px,56px,0);animation:glitch-anim2 5s infinite linear alternate-reverse}
+        @keyframes glitch-anim{0%{clip:rect(31px,9999px,94px,0)}20%{clip:rect(76px,9999px,15px,0)}40%{clip:rect(8px,9999px,83px,0)}60%{clip:rect(54px,9999px,43px,0)}80%{clip:rect(12px,9999px,68px,0)}100%{clip:rect(89px,9999px,23px,0)}}
+        @keyframes glitch-anim2{0%{clip:rect(65px,9999px,99px,0)}20%{clip:rect(12px,9999px,54px,0)}40%{clip:rect(87px,9999px,32px,0)}60%{clip:rect(23px,9999px,76px,0)}80%{clip:rect(91px,9999px,12px,0)}100%{clip:rect(45px,9999px,67px,0)}}
+        @keyframes glitch-skew{0%{transform:skew(0deg)}10%{transform:skew(-2deg)}20%{transform:skew(2deg)}30%{transform:skew(0deg)}100%{transform:skew(0deg)}}
+        #matrix-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.15}
+        .terminal{background:rgba(17,17,17,0.95);border:1px solid #333;border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,0.5);backdrop-filter:blur(10px);max-width:100%;overflow-x:auto}
+        .terminal-header{background:#1a1a1a;border-bottom:1px solid #333;padding:12px 16px;border-radius:8px 8px 0 0;display:flex;gap:8px;align-items:center}
+        .terminal-btn{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+        .terminal-content{padding:20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;min-height:300px;max-height:400px;overflow-y:auto;white-space:pre-wrap;word-wrap:break-word}
+        @media (max-width:640px){.terminal-content{font-size:11px;padding:12px;min-height:250px}}
+        .command{color:var(--neon-green)}
+        .cursor{display:inline-block;width:8px;height:16px;background:var(--neon-green);animation:blink 1s infinite;vertical-align:middle;margin-left:4px}
+        @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+        .skill-bar{height:4px;background:#222;border-radius:2px;overflow:hidden;position:relative}
+        .skill-progress{height:100%;background:linear-gradient(90deg,var(--neon-green),#00cc33);width:0;transition:width 1.5s ease-out;box-shadow:0 0 10px rgba(0,255,65,0.5)}
+        .project-card{transition:all 0.3s ease;border:1px solid #222}
+        .project-card:hover{transform:translateY(-5px);border-color:var(--neon-green);box-shadow:0 10px 30px rgba(0,255,65,0.1)}
+        .timeline-line{position:absolute;left:24px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--neon-green),transparent)}
+        @media (max-width:640px){.timeline-line{left:16px}}
+        .timeline-dot{width:16px;height:16px;background:var(--neon-green);border-radius:50%;position:absolute;left:17px;box-shadow:0 0 20px rgba(0,255,65,0.6)}
+        @media (max-width:640px){.timeline-dot{left:9px;width:14px;height:14px}}
+        .nav-link{position:relative;overflow:hidden}
+        .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--neon-green);transition:width 0.3s}
+        .nav-link:hover::after{width:100%}
+        .scanlines{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,0) 50%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.1));background-size:100% 4px;pointer-events:none;z-index:1000;opacity:0.3}
+        ::-webkit-scrollbar{width:8px}
+        ::-webkit-scrollbar-track{background:#0a0a0a}
+        ::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
+        ::-webkit-scrollbar-thumb:hover{background:var(--neon-green)}
+        .cert-badge{transition:transform 0.3s}
+        .cert-badge:hover{transform:scale(1.05)}
+        .typewriter{overflow:hidden;border-right:2px solid var(--neon-green);white-space:nowrap;animation:typing 3.5s steps(40,end),blink-caret 0.75s step-end infinite}
+        @media (max-width:640px){.typewriter{white-space:normal;border-right:none;animation:none}}
+        @keyframes typing{from{width:0}to{width:100%}}
+        @keyframes blink-caret{from,to{border-color:transparent}50%{border-color:var(--neon-green)}}
+        .terminal-input{background:transparent;border:none;color:var(--neon-green);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;width:calc(100% - 100px);caret-color:var(--neon-green)}
+        @media (max-width:640px){.terminal-input{font-size:11px;width:calc(100% - 80px)}}
+        .terminal-line{margin-bottom:4px}
+        .terminal-output{color:#e0e0e0}
+        .terminal-prompt{color:var(--neon-green)}
+        .mobile-menu-open{overflow:hidden}
     </style>
 </head>
 <body class="antialiased">
-
-    <!-- Matrix Background -->
     <canvas id="matrix-canvas"></canvas>
-    
-    <!-- Scanline Overlay -->
     <div class="scanlines"></div>
-
-    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <span class="font-mono text-xl font-bold text-white">
-                        <span class="text-green-400">root@</span>muhammed<span class="text-green-400">:~#</span>
-                    </span>
+                    <span class="font-mono text-lg md:text-xl font-bold text-white"><span class="text-green-400">root@</span>muhammed<span class="text-green-400">:~#</span></span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
@@ -319,234 +84,135 @@
                     </div>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-gray-800">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block text-gray-300 hover:text-green-400 px-3 py-2 text-base font-medium">Home</a>
-                <a href="#about" class="block text-gray-300 hover:text-green-400 px-3 py-2 text-base font-medium">About</a>
-                <a href="#experience" class="block text-gray-300 hover:text-green-400 px-3 py-2 text-base font-medium">Experience</a>
-                <a href="#skills" class="block text-gray-300 hover:text-green-400 px-3 py-2 text-base font-medium">Skills</a>
-                <a href="#projects" class="block text-gray-300 hover:text-green-400 px-3 py-2 text-base font-medium">Projects</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-gray-800 fixed w-full top-16 left-0 z-50 max-h-screen overflow-y-auto">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block text-gray-300 hover:text-green-400 hover:bg-gray-900 px-4 py-3 text-base font-medium rounded transition-colors">Home</a>
+                <a href="#about" class="block text-gray-300 hover:text-green-400 hover:bg-gray-900 px-4 py-3 text-base font-medium rounded transition-colors">About</a>
+                <a href="#experience" class="block text-gray-300 hover:text-green-400 hover:bg-gray-900 px-4 py-3 text-base font-medium rounded transition-colors">Experience</a>
+                <a href="#skills" class="block text-gray-300 hover:text-green-400 hover:bg-gray-900 px-4 py-3 text-base font-medium rounded transition-colors">Skills</a>
+                <a href="#projects" class="block text-gray-300 hover:text-green-400 hover:bg-gray-900 px-4 py-3 text-base font-medium rounded transition-colors">Projects</a>
+                <a href="#contact" class="block text-green-400 hover:bg-green-500/10 px-4 py-3 text-base font-medium rounded transition-colors border border-green-500/30 mt-2">Contact_Me</a>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative pt-16">
+    
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20 pb-12 px-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1">
                     <div class="space-y-2">
-                        <p class="font-mono text-green-400 text-lg">$ whoami</p>
-                        <h1 class="text-5xl md:text-7xl font-bold text-white glitch" data-text="MUHAMMED ABDUL AZEEZ">
-                            MUHAMMED ABDUL AZEEZ
-                        </h1>
-                        <div class="h-8">
-                            <p class="font-mono text-xl text-gray-400 typewriter" id="role-text">
-                                Penetration Tester | Ethical Hacker | Security Analyst
-                            </p>
+                        <p class="font-mono text-green-400 text-base md:text-lg">$ whoami</p>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white glitch" data-text="MUHAMMED ABDUL AZEEZ">MUHAMMED ABDUL AZEEZ</h1>
+                        <div class="h-auto md:h-8 flex justify-center lg:justify-start">
+                            <p class="font-mono text-base md:text-xl text-gray-400 typewriter inline-block" id="role-text">Penetration Tester | Ethical Hacker</p>
                         </div>
                     </div>
-                    
-                    <p class="text-lg text-gray-400 max-w-lg leading-relaxed">
-                        Highly motivated cybersecurity professional with hands-on experience in Vulnerability Assessment & Penetration Testing (VAPT). Specialized in offensive security, threat analysis, and enterprise-grade security assessments.
+                    <p class="text-base md:text-lg text-gray-400 max-w-lg mx-auto lg:mx-0 leading-relaxed px-4 lg:px-0">
+                        Highly motivated cybersecurity professional with hands-on experience in Vulnerability Assessment & Penetration Testing (VAPT). Specialized in offensive security and threat analysis.
                     </p>
-                    
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="bg-green-500 text-black font-bold py-3 px-8 rounded hover:bg-green-400 transition-all duration-300 font-mono">
-                            View_Projects
-                        </a>
-                        <a href="#contact" class="border border-green-500 text-green-400 font-bold py-3 px-8 rounded hover:bg-green-500/10 transition-all duration-300 font-mono">
-                            Contact_Me
-                        </a>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="#projects" class="bg-green-500 text-black font-bold py-3 px-6 md:px-8 rounded hover:bg-green-400 transition-all duration-300 font-mono text-sm md:text-base">View_Projects</a>
+                        <a href="#contact" class="border border-green-500 text-green-400 font-bold py-3 px-6 md:px-8 rounded hover:bg-green-500/10 transition-all duration-300 font-mono text-sm md:text-base">Contact_Me</a>
                     </div>
-                    
-                    <div class="flex gap-6 pt-4">
+                    <div class="flex gap-6 pt-4 justify-center lg:justify-start">
                         <div class="flex items-center gap-2 text-gray-400">
                             <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            <span class="font-mono text-sm">Available for opportunities</span>
+                            <span class="font-mono text-xs md:text-sm">Available for opportunities</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Terminal Window -->
-                <div class="terminal w-full max-w-2xl mx-auto lg:mx-0 transform hover:scale-[1.02] transition-transform duration-500">
+                <div class="terminal w-full max-w-2xl mx-auto lg:mx-0 order-1 lg:order-2 transform hover:scale-[1.02] transition-transform duration-500">
                     <div class="terminal-header">
                         <div class="terminal-btn bg-red-500"></div>
                         <div class="terminal-btn bg-yellow-500"></div>
                         <div class="terminal-btn bg-green-500"></div>
-                        <span class="ml-4 text-gray-400 text-sm font-mono">muhammed@kali:~/portfolio</span>
+                        <span class="ml-4 text-gray-400 text-xs md:text-sm font-mono truncate">muhammed@kali:~/portfolio</span>
                     </div>
-                    <div class="terminal-content text-gray-300 space-y-2" id="terminal-text">
-                        <div><span class="command">$</span> nmap -sV -sC target.com</div>
-                        <div class="text-gray-500">Starting Nmap 7.94SVN...</div>
-                        <div class="text-gray-500">Nmap scan report for target.com (192.168.1.1)</div>
-                        <div class="text-gray-500">Host is up (0.00032s latency).</div>
-                        <div class="text-gray-500">Not shown: 998 closed tcp ports (reset)</div>
-                        <div class="text-gray-500">PORT   STATE SERVICE VERSION</div>
-                        <div class="text-green-400">22/tcp open  ssh     OpenSSH 8.2p1</div>
-                        <div class="text-green-400">80/tcp open  http    Apache httpd 2.4.41</div>
-                        <div><span class="command">$</span> <span id="typing-command"></span><span class="cursor"></span></div>
+                    <div class="terminal-content text-gray-300" id="terminal-content">
+                        <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="text-green-400">nmap -sV -sC Evil.com</span></div>
+                        <div class="terminal-line terminal-output text-gray-500">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-01-15 14:32 WAT</div>
+                        <div class="terminal-line terminal-output text-gray-500">Nmap scan report for target.com (192.168.1.1)</div>
+                        <div class="terminal-line terminal-output text-gray-500">Host is up (0.00032s latency).</div>
+                        <div class="terminal-line terminal-output text-gray-500">Not shown: 998 closed tcp ports (reset)</div>
+                        <div class="terminal-line terminal-output text-gray-500">PORT   STATE SERVICE VERSION</div>
+                        <div class="terminal-line terminal-output text-green-400">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9</div>
+                        <div class="terminal-line terminal-output text-green-400">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</div>
+                        <div class="terminal-line terminal-output text-gray-500"></div>
+                        <div class="terminal-line"><span class="terminal-prompt">$</span> <input type="text" class="terminal-input" id="terminal-input" placeholder="Type command..." autocomplete="off" spellcheck="false"></div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-            </svg>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 relative">
+    
+    <section id="about" class="py-16 md:py-24 relative px-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 <div class="space-y-6 reveal-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">
-                        <span class="text-green-400 font-mono">01.</span> About Me
-                    </h2>
-                    <div class="space-y-4 text-gray-400 leading-relaxed">
-                        <p>
-                            I am a dedicated Penetration Tester with a strong foundation from <span class="text-green-400">Aptech Akowonjo</span> and professional experience at <span class="text-green-400">Sardonyx Limited</span>. My journey in cybersecurity is driven by a passion for understanding how systems break in order to make them stronger.
-                        </p>
-                        <p>
-                            During my internship at Sardonyx Limited, I conducted web application and network penetration tests on multiple real-life partner organizations, identifying critical vulnerabilities including IDOR, XSS, SQL Injection, and insecure APIs.
-                        </p>
-                        <p>
-                            Currently seeking to transition into an <span class="text-white font-semibold">Ethical Hacking Instructor</span> role where I can mentor the next generation of cybersecurity professionals through hands-on training and real-world scenarios.
-                        </p>
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white"><span class="text-green-400 font-mono">01.</span> About Me</h2>
+                    <div class="space-y-4 text-gray-400 leading-relaxed text-sm md:text-base">
+                        <p>I am a dedicated Penetration Tester with a strong foundation from <span class="text-green-400">Aptech Akowonjo</span> and professional experience at <span class="text-green-400">Sardonyx Limited</span>. My journey in cybersecurity is driven by a passion for understanding how systems break in order to make them stronger.</p>
+                        <p>During my internship at Sardonyx Limited, I conducted web application and network penetration tests on multiple real-life partner organizations, identifying critical vulnerabilities including IDOR, XSS, SQL Injection, and insecure APIs.</p>
+                        <p>Currently seeking to transition into an <span class="text-white font-semibold">Ethical Hacking Instructor</span> role where I can mentor the next generation of cybersecurity professionals.</p>
                     </div>
-                    
-                    <div class="grid grid-cols-2 gap-4 pt-4">
-                        <div class="border border-gray-800 p-4 rounded bg-gray-900/50">
-                            <div class="text-2xl font-bold text-green-400 font-mono">2+</div>
-                            <div class="text-sm text-gray-400">Years Experience</div>
-                        </div>
-                        <div class="border border-gray-800 p-4 rounded bg-gray-900/50">
-                            <div class="text-2xl font-bold text-green-400 font-mono">50+</div>
-                            <div class="text-sm text-gray-400">Vulnerabilities Found</div>
-                        </div>
-                        <div class="border border-gray-800 p-4 rounded bg-gray-900/50">
-                            <div class="text-2xl font-bold text-green-400 font-mono">10+</div>
-                            <div class="text-sm text-gray-400">Projects Completed</div>
-                        </div>
-                        <div class="border border-gray-800 p-4 rounded bg-gray-900/50">
-                            <div class="text-2xl font-bold text-green-400 font-mono">5+</div>
-                            <div class="text-sm text-gray-400">Certifications</div>
-                        </div>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 pt-4">
+                        <div class="border border-gray-800 p-3 md:p-4 rounded bg-gray-900/50"><div class="text-xl md:text-2xl font-bold text-green-400 font-mono">2+</div><div class="text-xs md:text-sm text-gray-400">Years Experience</div></div>
+                        <div class="border border-gray-800 p-3 md:p-4 rounded bg-gray-900/50"><div class="text-xl md:text-2xl font-bold text-green-400 font-mono">50+</div><div class="text-xs md:text-sm text-gray-400">Vulnerabilities Found</div></div>
+                        <div class="border border-gray-800 p-3 md:p-4 rounded bg-gray-900/50"><div class="text-xl md:text-2xl font-bold text-green-400 font-mono">10+</div><div class="text-xs md:text-sm text-gray-400">Projects Completed</div></div>
+                        <div class="border border-gray-800 p-3 md:p-4 rounded bg-gray-900/50"><div class="text-xl md:text-2xl font-bold text-green-400 font-mono">5+</div><div class="text-xs md:text-sm text-gray-400">Certifications</div></div>
                     </div>
                 </div>
-                
-                <div class="relative reveal-on-scroll">
-                    <div class="absolute inset-0 bg-green-500/20 rounded-lg transform translate-x-4 translate-y-4"></div>
-                    <div class="relative bg-gray-900 border border-gray-700 rounded-lg p-8 space-y-6">
-                        <h3 class="text-xl font-bold text-white mb-6 font-mono">$ cat certifications.txt</h3>
-                        
-                        <div class="cert-badge flex items-center gap-4 p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors">
-                            <div class="w-12 h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-xl">C</div>
-                            <div>
-                                <div class="font-bold text-white">CCEP</div>
-                                <div class="text-sm text-gray-400">Certified Educator Professional</div>
-                            </div>
-                        </div>
-                        
-                        <div class="cert-badge flex items-center gap-4 p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors">
-                            <div class="w-12 h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-xl">A</div>
-                            <div>
-                                <div class="font-bold text-white">Diploma in Ethical Hacking</div>
-                                <div class="text-sm text-gray-400">Aptech Akowonjo, Lagos</div>
-                            </div>
-                        </div>
-                        
-                        <div class="cert-badge flex items-center gap-4 p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors">
-                            <div class="w-12 h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-xl">V</div>
-                            <div>
-                                <div class="font-bold text-white">VAPT Certificate</div>
-                                <div class="text-sm text-gray-400">Alison Platform</div>
-                            </div>
-                        </div>
-                        
-                        <div class="cert-badge flex items-center gap-4 p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors">
-                            <div class="w-12 h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-xl">S</div>
-                            <div>
-                                <div class="font-bold text-white">Sardonyx Certificate</div>
-                                <div class="text-sm text-gray-400">Internship Completion</div>
-                            </div>
-                        </div>
+                <div class="relative reveal-on-scroll mt-8 lg:mt-0">
+                    <div class="absolute inset-0 bg-green-500/20 rounded-lg transform translate-x-3 md:translate-x-4 translate-y-3 md:translate-y-4"></div>
+                    <div class="relative bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-8 space-y-4 md:space-y-6">
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-4 md:mb-6 font-mono">$ cat certifications.txt</h3>
+                        <div class="cert-badge flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors"><div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-lg md:text-xl flex-shrink-0">C</div><div class="min-w-0"><div class="font-bold text-white text-sm md:text-base">CCEP</div><div class="text-xs md:text-sm text-gray-400 truncate">Certified Educator Professional</div></div></div>
+                        <div class="cert-badge flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors"><div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-lg md:text-xl flex-shrink-0">A</div><div class="min-w-0"><div class="font-bold text-white text-sm md:text-base">Smart professional-Ethical Hacking</div><div class="text-xs md:text-sm text-gray-400 truncate">Aptech Akowonjo, Lagos</div></div></div>
+                        <div class="cert-badge flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors"><div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-lg md:text-xl flex-shrink-0">V</div><div class="min-w-0"><div class="font-bold text-white text-sm md:text-base">VAPT Certificate</div><div class="text-xs md:text-sm text-gray-400 truncate">Alison Platform</div></div></div>
+                        <div class="cert-badge flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-black/50 rounded border border-gray-800 hover:border-green-500/50 transition-colors"><div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 rounded flex items-center justify-center text-green-400 font-bold text-lg md:text-xl flex-shrink-0">S</div><div class="min-w-0"><div class="font-bold text-white text-sm md:text-base">Sardonyx Certificate</div><div class="text-xs md:text-sm text-gray-400 truncate">Internship Completion</div></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-black/50 relative">
+    
+    <section id="experience" class="py-16 md:py-24 bg-black/50 relative px-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
-                <span class="text-green-400 font-mono">02.</span> Professional Experience
-            </h2>
-            
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 md:mb-12 text-center"><span class="text-green-400 font-mono">02.</span> Professional Experience</h2>
             <div class="relative max-w-4xl mx-auto">
                 <div class="timeline-line"></div>
-                
-                <!-- Experience 1 -->
-                <div class="relative pl-16 pb-12 reveal-on-scroll">
+                <div class="relative pl-10 md:pl-16 pb-8 md:pb-12 reveal-on-scroll">
                     <div class="timeline-dot"></div>
-                    <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-green-500/30 transition-colors">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-white">Penetration Testing Intern</h3>
-                                <p class="text-green-400 font-mono">Sardonyx Limited</p>
-                            </div>
-                            <span class="text-sm text-gray-500 font-mono bg-gray-800 px-3 py-1 rounded">Jan 2024 - June 2024</span>
+                    <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-4 md:p-6 hover:border-green-500/30 transition-colors">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
+                            <div><h3 class="text-lg md:text-xl font-bold text-white">Penetration Testing Intern</h3><p class="text-green-400 font-mono text-sm md:text-base">Sardonyx Limited</p></div>
+                            <span class="text-xs md:text-sm text-gray-500 font-mono bg-gray-800 px-2 md:px-3 py-1 rounded w-fit">Jan 2024 - June 2024</span>
                         </div>
-                        <p class="text-gray-400 mb-4">Lagos, Nigeria</p>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-400 mt-1">›</span>
-                                <span>Conducted web application and network penetration tests on multiple real-life partner organizations</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-400 mt-1">›</span>
-                                <span>Identified critical vulnerabilities: IDOR, XSS, SQLi, weak authentication, misconfigurations, insecure APIs</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-400 mt-1">›</span>
-                                <span>Utilized Burp Suite, Nmap, SQLMap, Hydra, and Metasploit for comprehensive security assessments</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-400 mt-1">›</span>
-                                <span>Prepared professional VAPT reports with risk ratings and remediation steps</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-400 mt-1">›</span>
-                                <span>Performed social engineering assessments and phishing analysis</span>
-                            </li>
+                        <p class="text-gray-400 mb-4 text-sm md:text-base">Lagos, Nigeria</p>
+                        <ul class="space-y-2 text-gray-300 text-sm md:text-base">
+                            <li class="flex items-start gap-2"><span class="text-green-400 mt-1 flex-shrink-0">›</span><span>Conducted web application and network penetration tests on multiple real-life partner organizations</span></li>
+                            <li class="flex items-start gap-2"><span class="text-green-400 mt-1 flex-shrink-0">›</span><span>Identified critical vulnerabilities: IDOR, XSS, SQLi, weak authentication, misconfigurations, insecure APIs</span></li>
+                            <li class="flex items-start gap-2"><span class="text-green-400 mt-1 flex-shrink-0">›</span><span>Utilized Burp Suite, Nmap, SQLMap, Hydra, and Metasploit for comprehensive security assessments</span></li>
+                            <li class="flex items-start gap-2"><span class="text-green-400 mt-1 flex-shrink-0">›</span><span>Prepared professional VAPT reports with risk ratings and remediation steps</span></li>
                         </ul>
-                        <div class="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded">
-                            <p class="text-green-400 text-sm font-mono">Key Achievement: Successfully completed full VAPT cycles on enterprise assets, improving team security posture</p>
-                        </div>
-                    </div>
-                </div>
-                
+                        <div class="mt-4 p-2 md:p-3 bg-green-500/10 border border-green-500/20 rounded"><p class="text-green-400 text-xs md:text-sm font-mono">Key Achievement: Successfully completed full VAPT cycles
                 <!-- Education -->
                 <div class="relative pl-16 reveal-on-scroll">
                     <div class="timeline-dot bg-blue-500 shadow-blue-500/60"></div>
                     <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-blue-500/30 transition-colors">
                         <div class="flex flex-wrap justify-between items-start mb-4">
                             <div>
-                                <h3 class="text-xl font-bold text-white">Diploma in Ethical Hacking & Cybersecurity</h3>
+                                <h3 class="text-xl font-bold text-white">Smart professional-Ethical Hacking</h3>
                                 <p class="text-blue-400 font-mono">Aptech Akowonjo, Lagos</p>
                             </div>
                             <span class="text-sm text-gray-500 font-mono bg-gray-800 px-3 py-1 rounded">2024 - 2025</span>
